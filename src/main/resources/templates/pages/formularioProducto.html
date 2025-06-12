@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <!--Tailwind-->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/css/stylesA.css}">
+
+    <title>Crear Producto</title>
+</head>
+<body>
+
+<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/imagenes/img000.png" class="h-8" alt="Flowbite Logo">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">MaxFood</span>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <a th:href="@{/}">
+                <button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    Regresar
+                </button>
+            </a>
+            <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<div class="seccionFormProducto">
+
+    <div class="flex items-start justify-center min-h-screen">
+        <div class="bg-green-200 p-8 rounded-2xl shadow-xl w-full max-w-md border border-green-300">
+            <h2 class="text-2xl font-bold text-center mb-6 text-green-800">Crear Producto</h2>
+
+            <form th:action="@{/guardarProducto}" method="post" th:object="${producto}">
+
+                <div  class="mb-4">
+                    <label hidden for="codigo" class="block text-sm font-medium text-green-700 mb-1">Código del producto</label>
+                    <input hidden type="text" id="codigo"
+                           th:field="*{codigo}"
+                           class="w-full border border-green-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-green-500"/>
+                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label for="nombre" class="block text-sm font-medium text-green-700 mb-1">Nombre del producto</label>
+                    <input type="text" id="nombre"
+                           th:field="*{nombre}"
+                           placeholder="nombre"
+                           class="w-full border border-green-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-green-500"/>
+                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label for="precioUnitario" class="block text-sm font-medium text-green-700 mb-1">Precio unitario</label>
+                    <input type="text" step="0.01" id="precioUnitario"
+                           th:field="*{precioUnitario}"
+                           class="w-full border border-green-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-green-500"/>
+                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('precioUnitario')}" th:errors="*{precioUnitario}"></span>
+                </div>
+
+                <div class="mb-6">
+                    <label for="proveedor" class="block text-sm font-medium text-green-700 mb-1">Seleccione un proveedor</label>
+                    <select id="proveedor"
+                            th:field="*{proveedor.codigo}"
+                            class="w-full border border-green-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring focus:ring-green-500">
+                        <option value="" disabled selected>Seleccione un proveedor</option>
+                        <option th:each="proveedor : ${proveedores}"
+                                th:value="${proveedor.codigo}"
+                                th:text="${proveedor.nombre}">
+                        </option>
+                    </select>
+                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('proveedor')}" th:errors="*{proveedor}"></span>
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                    Guardar Producto
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+.seccionFormCliente{
+      padding: 120px;
+      background-color: #85929e ;
+}
+
+.seccionFormProducto{
+      padding: 120px;
+      background-color: #0b5345 ;
+}
+
+.seccionFormProveedor{
+       padding: 80px;
+      background-color: #f39c12 ;
+}
+
+.seccionFormFactura{
+       padding: 120px;
+      background-color: #7b241c ;
+}
+
+
+
+.tablas{
+       padding: 80px;
+}
+
+.seccionPreguntasFrrecuentes {
+    padding: 30px;
+}
+
+.card-hover {
+   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+     transform: scale(1.05);
+     box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+ }
+
+.error-text {
+    color: #dc2626;
+    font-size: 10px;
+    padding-top: 2px;
+    display: block;
+}
+
+.campo-hover {
+   transition: transform 0.2s ease-in-out;
+}
+
+.campo-hover:hover {
+   transform: scale(1.03);
+   box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+}
+
+
+.card-hover {
+   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+     transform: scale(1.05);
+     box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+ }
+

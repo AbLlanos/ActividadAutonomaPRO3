@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Flowbite -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+
+    <title>MaxFood</title>
+</head>
+<body>
+
+
+
+<nav class="bg-gray-900 border-gray-800 text-white">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/imagenes/img000.png" class="h-8 card-hover" width="30" height="30" alt="MaxFood Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Carnicería MaxFood</span>
+        </a>
+
+        <div class="flex md:order-2 space-x-3 rtl:space-x-reverse">
+            <!-- Botón Cliente -->
+            <a th:href="@{/irFormCliente}">
+                <button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-500 font-medium rounded-lg text-sm px-4 py-2">
+                    Registrar Cliente
+                </button>
+            </a>
+
+            <!-- Botón Producto -->
+            <a th:href="@{/irFormularioProducto}">
+                <button type="button"
+                        class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-500 font-medium rounded-lg text-sm px-4 py-2">
+                    Registrar Producto
+                </button>
+            </a>
+
+            <!-- Botón Proveedor -->
+            <a th:href="@{/irFormProveedor}">
+                <button type="button"
+                        class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2">
+                    Registrar Proveedor
+                </button>
+            </a>
+
+            <!-- Botón hamburguesa para móvil -->
+            <button data-collapse-toggle="navbar-cta" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <span class="sr-only">Abrir menú principal</span>
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 17 14" aria-hidden="true">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+
+
+    </div>
+</nav>
+
+
+<!-- Sección Hero adaptada a MaxFood -->
+<section class="w-full overflow-x-hidden min-h-screen bg-white">
+    <div class="flex flex-col items-center justify-center px-4 mx-auto md:flex-row sm:px-6 lg:px-2 w-full max-w-7xl">
+        <!-- Texto -->
+        <div class="flex items-center py-5 w-full md:w-1/2 md:pb-20 md:pt-10 md:pr-10">
+            <div class="text-left w-full">
+                <h2 class="text-3xl font-extrabold leading-10 tracking-tight text-gray-800 sm:text-5xl sm:leading-none md:text-6xl">
+                    MaxFood: la mejor carniceria del pais con una
+                    <span class="font-bold text-red-500">gestión ejemplar de toda la marca</span>
+                </h2>
+                <p class="mt-3 text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl">
+                    Revisa y controla fácilmente tus clientes, proveedores, productos y facturas desde una sola plataforma diseñada para carnicerías modernas.
+                </p>
+                <div class="mt-5 sm:flex md:mt-8 space-x-4">
+                    <div class="rounded-md shadow">
+                        <a th:href="@{/irFormularioFactura}"
+                           class="card-hover flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-red-600 rounded-md hover:bg-red-700 md:py-4 md:text-lg md:px-10">
+                            Generar una compra
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Imagen -->
+        <div class="flex items-center py-5 w-full md:w-1/2 md:pb-20 md:pt-10 md:pl-10">
+            <div class="w-full p-3 md:p-8 flex justify-center">
+                <div class="rounded-lg bg-white text-black w-full max-w-[600px] max-h-[1000px]">
+                    <img src="/imagenes/img005.png"
+                         class="w-full h-full object-cover rounded-lg shadow-md card-hover"
+                         alt="Gestión de carnicería MaxFood" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Sección de funcionalidades - maxFood -->
+<section class="bg-gray-800 py-7" id="funcionalidades">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-white mb-10">
+            Ventanas de <span class="text-yellow-300">maxFood</span>
+        </h2>
+
+        <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+
+            <!-- Tarjeta 1 - Cliente -->
+            <div class="bg-gray-600 hover:bg-gray-500 rounded-lg shadow-sm flex flex-col text-center transition duration-300">
+                <div class="w-full h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover" th:src="@{/imagenes/img001.png}" alt="Cliente" />
+                </div>
+                <div class="p-5 flex flex-col justify-between grow">
+                    <h5 class="text-2xl font-bold text-white mb-2">
+                        Gestión de Clientes
+                    </h5>
+                    <p class="text-white text-base mb-4">
+                        Administra datos de tus clientes y mejora su experiencia con un seguimiento personalizado.
+                    </p>
+
+                    <a th:href="@{/clientes}">
+                    <button class="mx-auto mt-auto bg-white text-red-700 font-semibold px-4 py-2 rounded hover:bg-red-100">
+                        Dirigir
+                    </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2 - Proveedor -->
+            <div class="bg-orange-600 hover:bg-orange-500 rounded-lg shadow-sm flex flex-col text-center transition duration-300">
+                <div class="w-full h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover" th:src="@{/imagenes/img002.png}" alt="Proveedor" />
+                </div>
+                <div class="p-5 flex flex-col justify-between grow">
+                    <h5 class="text-2xl font-bold text-white mb-2">
+                        Gestión de Proveedores
+                    </h5>
+                    <p class="text-white text-base mb-4">
+                        Controla el registro y seguimiento de proveedores para garantizar el mejor abastecimiento.
+                    </p>
+                    <a th:href="@{/proveedor}">
+                    <button class="mx-auto mt-auto bg-white text-orange-700 font-semibold px-4 py-2 rounded hover:bg-orange-100">
+                        Dirigir
+                    </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 - Producto -->
+            <div class="bg-green-600 hover:bg-green-500 rounded-lg shadow-sm flex flex-col text-center transition duration-300">
+                <div class="w-full h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover" th:src="@{/imagenes/img003.jpg}" alt="Producto" />
+                </div>
+                <div class="p-5 flex flex-col justify-between grow">
+                    <h5 class="text-2xl font-bold text-white mb-2">
+                        Control de Productos
+                    </h5>
+                    <p class="text-white text-base mb-4">
+                        Registra, clasifica y actualiza todos los productos disponibles en tu carnicería.
+                    </p>
+
+                    <a th:href="@{/producto}">
+                    <button class="mx-auto mt-auto bg-white text-green-700 font-semibold px-4 py-2 rounded hover:bg-green-100">
+                        Dirigir
+                    </button>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- Tarjeta 4 - Factura -->
+            <div class="bg-purple-600 hover:bg-purple-500 rounded-lg shadow-sm flex flex-col text-center transition duration-300">
+                <div class="w-full h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover" th:src="@{/imagenes/img004.png}" alt="Factura" />
+                </div>
+                <div class="p-5 flex flex-col justify-between grow">
+                    <h5 class="text-2xl font-bold text-white mb-2">
+                        Facturación
+                    </h5>
+                    <p class="text-white text-base mb-4">
+                        Genera y gestiona facturas de forma rápida, precisa y profesional para cada venta.
+                    </p>
+
+                    <a th:href="@{/factura}">
+                    <button class="mx-auto mt-auto bg-white text-red-700 font-semibold px-4 py-2 rounded hover:bg-red-100">
+                        Dirigir
+                    </button>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div id="productos" class="bg-beige-50">
+    <section class="py-12 px-6">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">
+            Ofrecemos una <span class="text-red-600">gran variedad de productos</span>
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+                <img class="campo-hover w-full h-60 object-cover rounded-lg" th:src="@{/imagenes/img006.png}" alt="Producto 1">
+            </div>
+            <div>
+                <img class="campo-hover w-full h-60 object-cover rounded-lg" th:src="@{/imagenes/img007.png}" alt="Producto 2">
+            </div>
+            <div>
+                <img class="campo-hover w-full h-60 object-cover rounded-lg" th:src="@{/imagenes/img008.png}" alt="Producto 3">
+            </div>
+            <div>
+                <img class="campo-hover w-full h-60 object-cover rounded-lg" th:src="@{/imagenes/img009.png}" alt="Producto 4">
+            </div>
+            <div>
+                <img class="campo-hover w-full h-60 object-cover rounded-lg" th:src="@{/imagenes/img010.png}" alt="Producto 5">
+            </div>
+            <div>
+                <img class="campo-hover w-full h-60 object-cover rounded-lg" th:src="@{/imagenes/img011.png}" alt="Producto 6">
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!--Preguntas Frecuentes-->
+<section id="faq" class="bg-gray-300 py-16 px-6 p-3 seccionPreguntasFrecuentes">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Preguntas Frecuentes</h2>
+
+        <div id="accordion-taskflow" data-accordion="collapse" data-active-classes="bg-red-100 text-red-600">
+
+            <!-- Pregunta 1 -->
+            <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
+                <h2 id="accordion-heading-1">
+                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 rounded-t-xl hover:bg-red-50 focus:ring-4 focus:ring-red-200 gap-3" data-accordion-target="#accordion-body-1" aria-expanded="true" aria-controls="accordion-body-1">
+                        <span>¿Qué tipo de productos ofrece la carnicería?</span>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-body-1" class="hidden" aria-labelledby="accordion-heading-1">
+                    <div class="p-5 text-gray-700">
+                        Ofrecemos una amplia variedad de carnes frescas como res, cerdo, pollo y embutidos, además de cortes especiales y productos preparados para facilitar tus recetas.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
+                <h2 id="accordion-heading-2">
+                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-red-50 focus:ring-4 focus:ring-red-200 gap-3" data-accordion-target="#accordion-body-2" aria-expanded="false" aria-controls="accordion-body-2">
+                        <span>¿Cómo puedo hacer un pedido o encargo especial?</span>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-body-2" class="hidden" aria-labelledby="accordion-heading-2">
+                    <div class="p-5 text-gray-700">
+                        Puedes hacer tu pedido llamándonos al teléfono que aparece en contacto o visitándonos en la tienda. También ofrecemos atención personalizada para encargos especiales y eventos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
+                <h2 id="accordion-heading-3">
+                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-red-50 focus:ring-4 focus:ring-red-200 gap-3" data-accordion-target="#accordion-body-3" aria-expanded="false" aria-controls="accordion-body-3">
+                        <span>¿Ofrecen productos orgánicos o libres de hormonas?</span>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-body-3" class="hidden" aria-labelledby="accordion-heading-3">
+                    <div class="p-5 text-gray-700">
+                        Sí, contamos con productos seleccionados que garantizan calidad orgánica y están libres de hormonas y aditivos, para quienes buscan opciones más saludables.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
+                <h2 id="accordion-heading-4">
+                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-red-50 focus:ring-4 focus:ring-red-200 gap-3" data-accordion-target="#accordion-body-4" aria-expanded="false" aria-controls="accordion-body-4">
+                        <span>¿Cuál es el horario de atención de la carnicería?</span>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-body-4" class="hidden" aria-labelledby="accordion-heading-4">
+                    <div class="p-5 text-gray-700">
+                        Nuestro horario es de lunes a sábado, de 8:00 a.m. a 7:00 p.m. y domingos de 9:00 a.m. a 3:00 p.m.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="bg-white border border-gray-200 rounded-xl shadow">
+                <h2 id="accordion-heading-5">
+                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-red-50 focus:ring-4 focus:ring-red-200 gap-3" data-accordion-target="#accordion-body-5" aria-expanded="false" aria-controls="accordion-body-5">
+                        <span>¿Realizan envíos a domicilio?</span>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-body-5" class="hidden" aria-labelledby="accordion-heading-5">
+                    <div class="p-5 text-gray-700">
+                        Sí, contamos con servicio de entrega a domicilio en zonas cercanas. Consulta condiciones y costos al hacer tu pedido.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <!-- Logo y contacto -->
+            <div class="mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="/imagenes/img000.png" class="h-8 me-3" alt="MaxFood Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap">Carnicería MaxFood</span>
+                </a>
+                <p class="mt-4 text-gray-400 text-sm">
+                    Av. de los Cortes 456, Sector Central, Ciudad Mercado<br />
+                    Teléfono: +593 99 123 4567<br />
+                    Email: contacto@maxfood.com
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <!-- Menú -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Menú</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Síguenos</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="https://www.facebook.com" target="_blank" class="hover:text-blue-400 hover:underline">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" class="hover:text-blue-400 hover:underline">Twitter</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" class="hover:text-blue-400 hover:underline">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-400 hover:underline">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Legal</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="#" class="hover:text-blue-400 hover:underline">Política de privacidad</a></li>
+                        <li><a href="#" class="hover:text-blue-400 hover:underline">Términos de servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
+
+        <!-- Pie -->
+        <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-400 sm:text-center">
+        © 2025 <a href="/" class="hover:underline text-blue-400">Carnicería MaxFood™</a>. Todos los derechos reservados.
+      </span>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>
