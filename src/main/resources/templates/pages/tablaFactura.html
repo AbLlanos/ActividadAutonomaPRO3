@@ -1,29 +1,31 @@
 <!DOCTYPE html>
+<!-- Vista: Lista de todas las facturas generadas en el sistema -->
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
-    <!--Tailwind-->
+    <!-- Librería de componentes UI Flowbite (basada en Tailwind CSS) -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
+    <!-- Estilos personalizados de la aplicación -->
     <link rel="stylesheet" th:href="@{/css/stylesA.css}">
 
     <title>Tabla facturas</title>
 </head>
 <body>
 
-
+<!-- BARRA DE NAVEGACIÓN SUPERIOR fija en pantalla -->
 <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-800">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-        <!-- Logo -->
+        <!-- Logo → redirige al menú principal al hacer clic -->
         <a th:href="@{/menu}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/imagenes/img000.png" class="h-8" alt="MaxFood Logo">
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">MaxFood</span>
         </a>
 
-        <!-- Botón volver al menú -->
+        <!-- Botón para regresar al menú principal -->
         <div class="flex md:order-2">
             <a th:href="@{/menu}">
                 <button type="button"
@@ -37,15 +39,17 @@
 </nav>
 
 
-
-
+<!-- CONTENIDO PRINCIPAL: tabla de facturas -->
 <div class="tablas">
 
     <div class="w-full py-10">
         <h2 class="text-3xl font-bold mb-6 text-center">Lista de Facturas</h2>
 
+        <!-- Tabla con scroll horizontal en pantallas pequeñas -->
         <div class="overflow-x-auto bg-white shadow-md rounded-lg border border-gray-200 mx-auto w-[95%]">
             <table class="w-full divide-y divide-gray-200">
+
+                <!-- Encabezados de columnas -->
                 <thead class="bg-gray-800 text-white">
                 <tr>
                     <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">N° Factura</th>
@@ -61,32 +65,47 @@
                     <th class="px-4 py-3 text-center text-sm font-medium uppercase tracking-wider">Opciones</th>
                 </tr>
                 </thead>
+
                 <tbody class="bg-white divide-y divide-gray-200">
 
-                <!-- Si NO hay datos -->
+                <!-- Mensaje vacío: se muestra si la lista de facturas es nula o no tiene registros -->
                 <tr th:if="${facturas == null or facturas.isEmpty()}">
                     <td colspan="11" class="text-center py-6 text-gray-500 font-semibold">
                         No hay resultados disponibles
                     </td>
                 </tr>
 
-                <!-- Si HAY datos -->
+                <!-- Iteración sobre la lista de facturas enviada desde FacturaController -->
                 <tr th:each="factura : ${facturas}">
+
+                    <!-- Número único de la factura (clave primaria) -->
                     <td class="px-4 py-4" th:text="${factura.numero}"></td>
+
+                    <!-- Datos del cliente asociado a la factura (relación Many-to-One) -->
                     <td class="px-4 py-4" th:text="${factura.cliente.cedula}"></td>
                     <td class="px-4 py-4" th:text="${factura.cliente.nombre + ' ' + factura.cliente.apellido}"></td>
+
+                    <!-- Datos del producto asociado a la factura (relación Many-to-One) -->
                     <td class="px-4 py-4" th:text="${factura.producto.codigo}"></td>
                     <td class="px-4 py-4" th:text="${factura.producto.nombre}"></td>
+
+                    <!-- Campos calculados de la factura: cantidad, precio unitario, subtotal, IVA y total -->
                     <td class="px-4 py-4" th:text="${factura.cantidad}"></td>
                     <td class="px-4 py-4" th:text="${factura.precio}"></td>
                     <td class="px-4 py-4" th:text="${factura.subtotal}"></td>
                     <td class="px-4 py-4" th:text="${factura.iva}"></td>
                     <td class="px-4 py-4" th:text="${factura.total}"></td>
+
+                    <!-- Botones de acción por cada fila -->
                     <td class="px-4 py-4 text-center">
+
+                        <!-- Botón Editar → redirige al formulario precargado con los datos de la factura -->
                         <a th:href="@{/factura/editarFactura/{id}(id=${factura.numero})}"
                            class="inline-block bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-1 px-3 rounded">
                             Editar
                         </a>
+
+                        <!-- Botón Eliminar → llama al endpoint que elimina la factura por su número -->
                         <a th:href="@{/factura/eliminarFactura/{id}(id=${factura.numero})}"
                            class="inline-block bg-red-500 hover:bg-red-600 text-white text-sm py-1 px-3 rounded mt-2">
                             Eliminar
@@ -97,19 +116,17 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 
+    <!-- Botón para ir al formulario de generación de una nueva compra/factura -->
     <div class="mt-6 text-center">
         <a th:href="@{/factura/irFormularioFactura}"
            class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-5 rounded-lg transition">
             Generar nueva compra
         </a>
     </div>
+
 </div>
-
-
-
 
 </body>
 </html>

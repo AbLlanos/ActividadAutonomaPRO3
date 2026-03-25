@@ -1,20 +1,32 @@
 <!DOCTYPE html>
+<!-- Vista: Panel de administración principal (menú de navegación entre módulos) -->
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Librería de componentes UI Flowbite (basada en Tailwind CSS) -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <!-- Estilos personalizados de la aplicación -->
     <link rel="stylesheet" th:href="@{/css/stylesA.css}">
+
     <title>MaxFood - Panel</title>
 </head>
 <body class="bg-gray-100">
 
+<!-- BARRA DE NAVEGACIÓN SUPERIOR fija en pantalla -->
 <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-800">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+        <!-- Logo → redirige a la raíz de la aplicación al hacer clic -->
         <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/imagenes/img000.png" class="h-8" alt="MaxFood Logo">
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">MaxFood</span>
         </a>
+
+        <!-- Botón de cierre de sesión → hace POST a /logout gestionado por Spring Security
+             El token CSRF es obligatorio para que Spring Security acepte la petición POST -->
         <div class="flex md:order-2">
             <form th:action="@{/logout}" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -27,16 +39,16 @@
     </div>
 </nav>
 
-<!-- Contenido principal -->
+<!-- CONTENIDO PRINCIPAL: grid de accesos directos a cada módulo -->
 <div class="pt-24 pb-10 px-6 max-w-screen-xl mx-auto bg-black">
 
     <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">Panel de administración</h1>
     <p class="text-gray-500 mb-10 text-center">Selecciona una sección para continuar</p>
 
-    <!-- Grid modificado: 2 columnas en desktop, 1 en móvil -->
+    <!-- Grid de tarjetas: 2 columnas en escritorio, 1 columna en móvil -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Clientes -->
+        <!-- Tarjeta Clientes → redirige al listado de clientes -->
         <a th:href="@{/cliente/clientes}" class="group h-full">
             <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col justify-center items-center text-center h-full hover:shadow-xl hover:border-blue-400 transition duration-200">
                 <div class="bg-blue-100 rounded-full p-4 mb-4 group-hover:bg-blue-200 transition duration-200">
@@ -49,7 +61,7 @@
             </div>
         </a>
 
-        <!-- Facturas -->
+        <!-- Tarjeta Facturas → redirige al listado de facturas -->
         <a th:href="@{/factura/factura}" class="group h-full">
             <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col justify-center items-center text-center h-full hover:shadow-xl hover:border-green-400 transition duration-200">
                 <div class="bg-green-100 rounded-full p-4 mb-4 group-hover:bg-green-200 transition duration-200">
@@ -62,7 +74,7 @@
             </div>
         </a>
 
-        <!-- Productos -->
+        <!-- Tarjeta Productos → redirige al listado de productos -->
         <a th:href="@{/producto/producto}" class="group h-full">
             <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col justify-center items-center text-center h-full hover:shadow-xl hover:border-yellow-400 transition duration-200">
                 <div class="bg-yellow-100 rounded-full p-4 mb-4 group-hover:bg-yellow-200 transition duration-200">
@@ -75,7 +87,7 @@
             </div>
         </a>
 
-        <!-- Proveedores -->
+        <!-- Tarjeta Proveedores → redirige al listado de proveedores -->
         <a th:href="@{/proveedor/proveedor}" class="group h-full">
             <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col justify-center items-center text-center h-full hover:shadow-xl hover:border-purple-400 transition duration-200">
                 <div class="bg-purple-100 rounded-full p-4 mb-4 group-hover:bg-purple-200 transition duration-200">
