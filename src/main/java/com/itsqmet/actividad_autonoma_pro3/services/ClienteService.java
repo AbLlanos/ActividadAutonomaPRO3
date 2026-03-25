@@ -3,6 +3,7 @@ package com.itsqmet.actividad_autonoma_pro3.services;
 import com.itsqmet.actividad_autonoma_pro3.entity.Cliente;
 import com.itsqmet.actividad_autonoma_pro3.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     //Mostrar todos los productos
     public List<Cliente> mostrarClientes(){
         return  clienteRepository.findAll();
@@ -24,10 +28,14 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
-    //Guardar
-    public Cliente  guardarCliente(Cliente cliente){
+    // Guardar
+    public Cliente guardarCliente(Cliente cliente) {
+
+        cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
+
         return clienteRepository.save(cliente);
     }
+
 
     //Eliminar
     public void eliminarCliente(String id){

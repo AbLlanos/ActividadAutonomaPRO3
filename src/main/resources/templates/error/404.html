@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/stylesA.css}">
+    <title>MaxFood - Página no encontrada</title>
+</head>
+<body class="bg-gray-100 h-screen">
+
+<div class="flex items-center justify-center h-full m-10">
+    <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-16 max-w-md w-full text-center">
+
+        <div class="flex justify-center mb-6">
+            <div class="bg-red-100 rounded-full p-12 mx-auto w-fit">
+                <svg class="w-16 h-16 text-red-500" fill="none" stroke="currentColor"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="text-6xl font-extrabold text-gray-800 mb-2">404</h1>
+        <h2 class="text-xl font-semibold text-gray-600 mb-4">Página no encontrada</h2>
+        <p class="text-gray-500 mb-8">La ruta que intentas acceder no existe o fue movida.</p>
+
+        <a th:href="@{/}">
+            <button type="button"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+                Regresar al inicio
+            </button>
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

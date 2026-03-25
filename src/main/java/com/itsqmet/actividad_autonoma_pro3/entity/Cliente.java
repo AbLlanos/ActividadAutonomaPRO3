@@ -2,15 +2,18 @@ package com.itsqmet.actividad_autonoma_pro3.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
 public class Cliente {
 
 
@@ -22,6 +25,14 @@ public class Cliente {
     @NotBlank (message = "El nombre es obligatorio")
     @Size(max = 50, message = "El nombre no debe exceder 50 caracteres")
     private String nombre;
+
+    @NotBlank (message = "El email es obligatorio")
+    @Email(message = "El email debe tener el formato correcto")
+    private String email;
+
+    @NotBlank (message = "El password es obligatorio")
+    @Size(min = 6, max = 255, message = "El password no debe tener menos de 6 caracteres")
+    private String password;
 
     @NotBlank(message = "El apellido es obligatorio")
     @Size(max = 50, message = "El apellido no debe exceder 50 caracteres")
@@ -41,44 +52,4 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
 
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
 }

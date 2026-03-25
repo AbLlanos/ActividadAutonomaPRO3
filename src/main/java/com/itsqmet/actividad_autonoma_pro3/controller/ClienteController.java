@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/cliente")
 public class ClienteController {
 
     @Autowired
@@ -50,15 +51,6 @@ public class ClienteController {
         model.addAttribute("cliente", clienteGuardado);
         return "redirect:/clientes";
     }
-
-
-    /* Sin validacion
-    @PostMapping("/guardarCliente")
-    public String guardarCliente(@ModelAttribute Cliente cliente){
-        clienteService.guardarCliente(cliente);
-        return "redicrect:/-----";
-    }
-    */
 
     // Actualizar
     @GetMapping("/editarCliente/{id}")

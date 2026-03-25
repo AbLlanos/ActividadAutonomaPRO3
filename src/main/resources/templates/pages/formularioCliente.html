@@ -16,30 +16,26 @@
 
 <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+        <!-- Logo -->
         <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/imagenes/img000.png" class="h-8" alt="Flowbite Logo">
+            <img src="/imagenes/img000.png" class="h-8" alt="MaxFood Logo">
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">MaxFood</span>
         </a>
-        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+        <!-- Botón Regresar — visible siempre, sin hamburguesa -->
+        <div class="flex md:order-2">
             <a th:href="@{/}">
                 <button type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
                     Regresar
                 </button>
             </a>
-            <button data-collapse-toggle="navbar-sticky" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                    aria-controls="navbar-sticky" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                     viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M1 1h15M1 7h15M1 13h15"/>
-                </svg>
-            </button>
         </div>
+
     </div>
 </nav>
+
 
 
 <div class="seccionFormCliente">
@@ -47,8 +43,30 @@
     <div class="flex items-start justify-center min-h-screen ">
         <div class="bg-gray-300 p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-200">
             <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Crear Cliente</h2>
-            <form th:action="@{/guardarCliente}" method="post" th:object="${cliente}">
+            <form th:action="@{/cliente/guardarCliente}" method="post" th:object="${cliente}">
                 <div class="mb-4">
+
+                    <div class="mb-4">
+                        <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su nombre</label>
+                        <input type="text" id="nombre" th:field="*{nombre}"
+                               oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
+                               placeholder="nombre"
+                               class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"/>
+                        <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('nombre')}"
+                              th:errors="*{nombre}"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="apellido" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su
+                            apellido</label>
+                        <input type="text" id="apellido" th:field="*{apellido}"
+                               oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
+                               placeholder="apellido"
+                               class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"/>
+                        <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('apellido')}"
+                              th:errors="*{apellido}"></span>
+                    </div>
+
                     <label for="cedula" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su cédula</label>
                     <input type="text" id="cedula"
                            th:field="*{cedula}"
@@ -61,25 +79,26 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su nombre</label>
-                    <input type="text" id="nombre" th:field="*{nombre}"
-                           oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
-                           placeholder="nombre"
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su
+                        email</label>
+                    <input type="text" id="email" th:field="*{email}"
+                           placeholder="email"
                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"/>
-                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('nombre')}"
-                          th:errors="*{nombre}"></span>
+                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('email')}"
+                          th:errors="*{email}"></span>
                 </div>
 
                 <div class="mb-4">
-                    <label for="apellido" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su
-                        apellido</label>
-                    <input type="text" id="apellido" th:field="*{apellido}"
-                           oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
-                           placeholder="apellido"
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su
+                        password o contraseña</label>
+                    <input type="text" id="password" th:field="*{password}"
+                           placeholder="password"
                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"/>
-                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('apellido')}"
-                          th:errors="*{apellido}"></span>
+                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('password')}"
+                          th:errors="*{password}"></span>
                 </div>
+
+
 
                 <div class="mb-4">
                     <label for="direccion" class="block text-sm font-medium text-gray-700 mb-1">Ingrese su
@@ -109,6 +128,67 @@
     </div>
 
 </div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <!-- Logo y contacto -->
+            <div class="mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="/imagenes/img000.png" class="h-8 me-3" alt="MaxFood Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap">Carnicería MaxFood</span>
+                </a>
+                <p class="mt-4 text-gray-400 text-sm">
+                    Av. de los Cortes 456, Sector Central, Ciudad Mercado<br />
+                    Teléfono: +593 99 123 4567<br />
+                    Email: contacto@maxfood.com
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <!-- Menú -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Menú</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Síguenos</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="https://www.facebook.com" target="_blank" class="hover:text-blue-400 hover:underline">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" class="hover:text-blue-400 hover:underline">Twitter</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" class="hover:text-blue-400 hover:underline">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-400 hover:underline">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Legal</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="#" class="hover:text-blue-400 hover:underline">Política de privacidad</a></li>
+                        <li><a href="#" class="hover:text-blue-400 hover:underline">Términos de servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
+
+        <!-- Pie -->
+        <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-400 sm:text-center">
+        © 2025 <a href="/" class="hover:underline text-blue-400">Carnicería MaxFood™</a>. Todos los derechos reservados.
+      </span>
+        </div>
+    </div>
+</footer>
+
 
 </body>
 </html>

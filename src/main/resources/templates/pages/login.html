@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/stylesA.css}">
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+
+<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/imagenes/img000.png" class="h-8" alt="MaxFood Logo">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">MaxFood</span>
+        </a>
+        <div class="flex md:order-2">
+            <a th:href="@{/}">
+                <button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    Regresar
+                </button>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="seccionFormCliente">
+    <div class="flex items-start justify-center min-h-screen">
+        <div class="bg-gray-300 p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-200">
+
+            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Iniciar Sesión</h2>
+
+            <div th:if="${param.error}"
+                 class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm text-center">
+                Correo o contraseña incorrectos.
+            </div>
+
+            <div th:if="${param.logout}"
+                 class="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm text-center">
+                Sesión cerrada correctamente.
+            </div>
+
+            <form th:action="@{/login}" method="post">
+
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">
+                        Correo electrónico
+                    </label>
+                    <input type="email"
+                           id="username"
+                           name="username"
+                           placeholder="ejemplo@correo.com"
+                           required
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"/>
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+                        Contraseña
+                    </label>
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="••••••••"
+                           required
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"/>
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                    Ingresar
+                </button>
+
+                <p class="text-center text-sm text-gray-600 mt-4">
+                    ¿No tienes cuenta?
+                    <a th:href="@{/crearCliente}" class="text-blue-600 hover:underline font-medium">
+                        Regístrate aquí
+                    </a>
+                </p>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <!-- Logo y contacto -->
+            <div class="mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="/imagenes/img000.png" class="h-8 me-3" alt="MaxFood Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap">Carnicería MaxFood</span>
+                </a>
+                <p class="mt-4 text-gray-400 text-sm">
+                    Av. de los Cortes 456, Sector Central, Ciudad Mercado<br />
+                    Teléfono: +593 99 123 4567<br />
+                    Email: contacto@maxfood.com
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <!-- Menú -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Menú</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Síguenos</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="https://www.facebook.com" target="_blank" class="hover:text-blue-400 hover:underline">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" class="hover:text-blue-400 hover:underline">Twitter</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" class="hover:text-blue-400 hover:underline">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-400 hover:underline">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Legal</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="#" class="hover:text-blue-400 hover:underline">Política de privacidad</a></li>
+                        <li><a href="#" class="hover:text-blue-400 hover:underline">Términos de servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
+
+        <!-- Pie -->
+        <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-400 sm:text-center">
+        © 2025 <a href="/" class="hover:underline text-blue-400">Carnicería MaxFood™</a>. Todos los derechos reservados.
+      </span>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>
