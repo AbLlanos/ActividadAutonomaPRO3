@@ -10,31 +10,51 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Servicio que contiene la lógica de negocio para la gestión de facturas.
+ * Actúa como intermediario entre el controlador y el repositorio de facturas.
+ */
 @Service
 public class FacturaService {
 
+    /**
+     * Repositorio JPA para operaciones CRUD sobre la entidad Factura en la base de datos.
+     */
     @Autowired
     private FacturaRepository facturaRepository;
 
-    //Mostrar todos los productos
-    public List<Factura> mostrarFactura(){
+    /**
+     * Retorna la lista completa de facturas registradas en la base de datos.
+     * @return Lista de todas las facturas.
+     */
+    public List<Factura> mostrarFactura() {
         return facturaRepository.findAll();
     }
 
-    //Buscar por id
-    public Optional<Factura> bucarFacturaPorId(Long id){
+    /**
+     * Busca una factura por su identificador único.
+     * @param id ID de la factura a buscar.
+     * @return Optional con la factura si existe, o vacío si no se encuentra.
+     */
+    public Optional<Factura> bucarFacturaPorId(Long id) {
         return facturaRepository.findById(id);
     }
 
-    //Guardar
-    public Factura  guardarFactura(Factura factura){
+    /**
+     * Guarda una nueva factura o actualiza una existente en la base de datos.
+     * Si la factura ya tiene ID, se actualizará; de lo contrario, se creará una nueva.
+     * @param factura Objeto Factura con los datos a persistir.
+     * @return La factura guardada con su ID generado.
+     */
+    public Factura guardarFactura(Factura factura) {
         return facturaRepository.save(factura);
     }
 
-    //Eliminar
-    public void eliminarFactura(Long id){
+    /**
+     * Elimina una factura de la base de datos por su ID.
+     * @param id ID de la factura a eliminar.
+     */
+    public void eliminarFactura(Long id) {
         facturaRepository.deleteById(id);
     }
-
-
 }
