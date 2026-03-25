@@ -53,9 +53,8 @@ public class ProductoController {
             model.addAttribute("proveedores", proveedores);
             return "pages/formularioProducto";
         }
-
         productoService.guardarProducto(producto);
-        return "redirect:/producto";
+        return "redirect:/producto/producto";
     }
 
 
@@ -79,7 +78,7 @@ public class ProductoController {
     @GetMapping("/eliminarProducto/{id}")
     public String eliminarProducto(@PathVariable Long id) {
         productoService.eliminarProducto(id);
-        return "redirect:/producto";
+        return "redirect:/producto/producto";
     }
 
 }

@@ -27,14 +27,14 @@
     </div>
 </nav>
 
-
 <!-- Contenido principal -->
-<div class="pt-24 pb-10 px-6 max-w-screen-xl mx-auto">
+<div class="pt-24 pb-10 px-6 max-w-screen-xl mx-auto bg-black">
 
-    <h1 class="text-3xl font-bold text-gray-800 mb-2">Panel de administración</h1>
-    <p class="text-gray-500 mb-10">Selecciona una sección para continuar</p>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">Panel de administración</h1>
+    <p class="text-gray-500 mb-10 text-center">Selecciona una sección para continuar</p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Grid modificado: 2 columnas en desktop, 1 en móvil -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <!-- Clientes -->
         <a th:href="@{/cliente/clientes}" class="group h-full">

@@ -50,7 +50,7 @@ public class ProveedorController {
 
         Proveedor proveedorGuardado = proveedorService.guardarProveedor(proveedor);;
         model.addAttribute("proveedor", proveedorGuardado);
-        return "redirect:/proveedor";
+        return "redirect:/proveedor/proveedor";
     }
 
     /*
@@ -73,6 +73,6 @@ public class ProveedorController {
     @GetMapping("/eliminarProveedor/{codigo}")
     public String eliminarProveedor(@PathVariable Long codigo) {
         proveedorService.eliminarProveedor(codigo);
-        return "redirect:/proveedor";
+        return "redirect:/proveedor/proveedor";
     }
 }

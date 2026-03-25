@@ -49,7 +49,7 @@ public class ClienteController {
 
         Cliente clienteGuardado = clienteService.guardarCliente(cliente);
         model.addAttribute("cliente", clienteGuardado);
-        return "redirect:/clientes";
+        return "pages/login";
     }
 
     // Actualizar
@@ -64,7 +64,7 @@ public class ClienteController {
     @GetMapping("/eliminarCliente/{id}")
     public String eliminarClliente(@PathVariable String id) {
         clienteService.eliminarCliente(id);
-        return "redirect:/clientes";
+        return "redirect:/cliente/clientes";
     }
 
 

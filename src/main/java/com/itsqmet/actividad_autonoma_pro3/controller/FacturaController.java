@@ -92,7 +92,7 @@ public class FacturaController {
         factura.setTotal(total);
 
         facturaService.guardarFactura(factura);
-        return "redirect:/factura";
+        return "redirect:/factura/factura";
     }
 
 
@@ -127,7 +127,7 @@ public class FacturaController {
     public String eliminarFactura(@PathVariable Long id) {
         facturaService.eliminarFactura(id);
 
-        return "redirect:/factura";
+        return "redirect:/factura/factura";
     }
 
 }
